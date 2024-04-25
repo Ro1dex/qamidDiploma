@@ -11,18 +11,23 @@ import androidx.test.espresso.ViewInteraction;
 import org.hamcrest.core.IsInstanceOf;
 
 import io.qameta.allure.kotlin.Allure;
+import io.qameta.allure.kotlin.Step;
 import ru.iteco.fmhandroid.R;
-import ru.iteco.fmhandroid.ui.testutils.TestBase;
+import ru.iteco.fmhandroid.ui.testutils.Matchers;
 
-public class AboutPage extends TestBase {
+public class AboutPage extends Matchers {
 
     public static ViewInteraction aboutVersionText = onView(
             allOf(withId(R.id.about_version_title_text_view)));
     static ViewInteraction backButtonAbout = onView(
             allOf(withId(R.id.about_back_image_button)));
-    public static void clickBackButtonAbout(){
-        Allure.step("Нажатие кнопки назад"); backButtonAbout.perform(click());
+
+    @Step("Нажатие кнопки назад")
+    public static void clickBackButtonAbout() {
+        Allure.step("Нажатие кнопки назад");
+        backButtonAbout.perform(click());
     }
+
     public static ViewInteraction aboutCompany = onView(
             allOf(withId(R.id.about_company_info_label_text_view),
                     withParent(withParent(IsInstanceOf.instanceOf(android.widget.LinearLayout.class)))));

@@ -9,6 +9,8 @@ import androidx.test.espresso.Root;
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
 
+import io.qameta.allure.kotlin.Step;
+
 public class ToastMatcher extends TypeSafeMatcher<Root> {
     @Override
     protected boolean matchesSafely(Root root) {

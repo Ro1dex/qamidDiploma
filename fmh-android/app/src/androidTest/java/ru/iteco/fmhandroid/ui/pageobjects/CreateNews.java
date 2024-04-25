@@ -17,20 +17,32 @@ import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.ViewInteraction;
 
 import io.qameta.allure.kotlin.Allure;
+import io.qameta.allure.kotlin.Step;
 import ru.iteco.fmhandroid.R;
-import ru.iteco.fmhandroid.ui.testutils.TestBase;
+import ru.iteco.fmhandroid.ui.testutils.Matchers;
 
-public class CreateNews extends TestBase {
+public class CreateNews extends Matchers {
     static ViewInteraction newsCategory = onView(
             allOf(withId(R.id.news_item_category_text_auto_complete_text_view)));
-    public static void pressNewsCategory(){
-        Allure.step("Нажатие на 'категория'"); newsCategory.perform(click());
+
+    @Step("Нажатие на 'категория'")
+    public static void pressNewsCategory() {
+        Allure.step("Нажатие на 'категория'");
+        newsCategory.perform(click());
     }
-    static DataInteraction category(int pos){ return onData(anything())
-            .inRoot(isPlatformPopup())
-            .atPosition(pos);
+
+    static DataInteraction category(int pos) {
+        return onData(anything())
+                .inRoot(isPlatformPopup())
+                .atPosition(pos);
     }
-    public static void pressCategory (int pos){Allure.step("Выбор из списка категорий"); category(pos).perform(click());}
+
+    @Step("Выбор из списка категорий")
+    public static void pressCategory(int pos) {
+        Allure.step("Выбор из списка категорий");
+        category(pos).perform(click());
+    }
+
     static ViewInteraction createDate = onView(
             allOf(withId(R.id.news_item_publish_date_text_input_edit_text),
                     childAtPosition(
@@ -39,7 +51,12 @@ public class CreateNews extends TestBase {
                                     0),
                             1)));
 
-    public static void pressDate(){Allure.step("Нажатие на 'Дата опубликации'"); createDate.perform(click());}
+    @Step("Нажатие на 'Дата опубликации'")
+    public static void pressDate() {
+        Allure.step("Нажатие на 'Дата опубликации'");
+        createDate.perform(click());
+    }
+
     static ViewInteraction okButton = onView(
             allOf(withId(android.R.id.button1),
                     childAtPosition(
@@ -47,13 +64,24 @@ public class CreateNews extends TestBase {
                                     withClassName(is("android.widget.ScrollView")),
                                     0),
                             3)));
-    static ViewInteraction cancelButton = onView((allOf(withId(android.R.id.button2),  childAtPosition(
+    static ViewInteraction cancelButton = onView((allOf(withId(android.R.id.button2), childAtPosition(
             childAtPosition(
                     withId(androidx.constraintlayout.widget.R.id.buttonPanel),
                     0),
             2))));
-    public static void pressOk(){Allure.step("Нажатие Ок"); okButton.perform(click());}
-    public static void pressCancel(){Allure.step("Нажатие отмена"); cancelButton.perform(click());}
+
+    @Step("Нажатие Ок")
+    public static void pressOk() {
+        Allure.step("Нажатие Ок");
+        okButton.perform(click());
+    }
+
+    @Step("Нажатие отмена")
+    public static void pressCancel() {
+        Allure.step("Нажатие отмена");
+        cancelButton.perform(click());
+    }
+
     static ViewInteraction createTime = onView(
             allOf(withId(R.id.news_item_publish_time_text_input_edit_text),
                     childAtPosition(
@@ -61,16 +89,35 @@ public class CreateNews extends TestBase {
                                     withId(R.id.news_item_publish_time_text_input_layout),
                                     0),
                             1)));
-    public static void pressTime(){Allure.step("Нажатие на время опубликации"); createTime.perform(click());}
-    static ViewInteraction textDescription =onView(allOf(withId(R.id.news_item_description_text_input_edit_text)));
 
-    public static void inputTextDescription(String des){
+    @Step("Нажатие на время опубликации")
+    public static void pressTime() {
+        Allure.step("Нажатие на время опубликации");
+        createTime.perform(click());
+    }
+
+    static ViewInteraction textDescription = onView(allOf(withId(R.id.news_item_description_text_input_edit_text)));
+
+    @Step("Вставка описания")
+    public static void inputTextDescription(String des) {
         Allure.step("Вставка описания");
         textDescription.perform(replaceText(des), closeSoftKeyboard());
     }
+
     static ViewInteraction dismiss = onView(allOf(withId(R.id.cancel_button)));
-    public static void pressDismiss(){Allure.step("Нажатие на отмену изменений"); dismiss.perform(click());}
+
+    @Step("Нажатие на отмену изменений")
+    public static void pressDismiss() {
+        Allure.step("Нажатие на отмену изменений");
+        dismiss.perform(click());
+    }
+
     static ViewInteraction saveNewsButton = onView(
             allOf(withId(R.id.save_button)));
-    public static void pressSave(){Allure.step("Нажатие на сохранить"); saveNewsButton.perform(scrollTo(), click());}
+
+    @Step("Нажатие на сохранить")
+    public static void pressSave() {
+        Allure.step("Нажатие на сохранить");
+        saveNewsButton.perform(scrollTo(), click());
+    }
 }

@@ -5,14 +5,20 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import static org.junit.Assert.fail;
+
+import androidx.test.espresso.NoMatchingViewException;
+
 import io.qameta.allure.kotlin.Allure;
-import ru.iteco.fmhandroid.ui.testutils.TestBase;
-import ru.iteco.fmhandroid.ui.testutils.ToastMatcher;
+import io.qameta.allure.kotlin.Step;
 
-public class CheckToastMessage extends TestBase {
+public class CheckToastMessage extends Matchers {
 
+    @Step("Проверка toast-сообщения")
     public static void checkToastMessage (String toast){
         Allure.step("Проверка toast-сообщения");
-        onView(withText(toast)).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
+        try {
+            onView(withText(toast)).inRoot(new ToastMatcher()).check(matches(isDisplayed()));
+        } catch (NoMatchingViewException e) {fail("Toast-сообщение: '" + toast + "' не найдено");}
     }
 }

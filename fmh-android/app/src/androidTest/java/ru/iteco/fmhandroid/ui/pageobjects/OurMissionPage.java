@@ -9,16 +9,20 @@ import static org.hamcrest.Matchers.allOf;
 import androidx.test.espresso.ViewInteraction;
 
 import io.qameta.allure.kotlin.Allure;
+import io.qameta.allure.kotlin.Step;
 import ru.iteco.fmhandroid.R;
-import ru.iteco.fmhandroid.ui.testutils.TestBase;
+import ru.iteco.fmhandroid.ui.testutils.Matchers;
 
-public class OurMissionPage extends TestBase {
-     static public ViewInteraction title = onView(
+public class OurMissionPage extends Matchers {
+    static public ViewInteraction title = onView(
             allOf(withId(R.id.our_mission_title_text_view)));
     static ViewInteraction item = onView(
             allOf(withId(R.id.our_mission_item_list_recycler_view)));
-    public static void pressItem(int position){
+
+    @Step("Нажатие на классную цитату")
+    public static void pressItem(int position) {
         Allure.step("Нажатие на классную цитату");
-        item.perform(actionOnItemAtPosition(position, click()));}
+        item.perform(actionOnItemAtPosition(position, click()));
+    }
 
 }
