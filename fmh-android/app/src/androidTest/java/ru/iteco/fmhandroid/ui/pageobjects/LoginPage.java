@@ -15,26 +15,29 @@ import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.testutils.Matchers;
 
 public class LoginPage extends Matchers {
-    static ViewInteraction textInputLogin = onView(allOf(childAtPosition(childAtPosition(withId(R.id.login_text_input_layout), 0), 1)));
+    ViewInteraction textInputLogin = onView(allOf(childAtPosition(childAtPosition(withId(R.id.login_text_input_layout), 0), 1)));
 
     @Step("Вставка логина")
-    public static void inputLoginString(String login) {
+    public void inputLoginString(String login) {
         Allure.step("Вставка логина");
         textInputLogin.perform(replaceText(login), closeSoftKeyboard());
     }
 
-    static ViewInteraction textInputPassword = onView(allOf(childAtPosition(childAtPosition(withId(R.id.password_text_input_layout), 0), 1)));
+    ViewInteraction textInputPassword = onView(allOf(childAtPosition(childAtPosition(withId(R.id.password_text_input_layout), 0), 1)));
 
     @Step("Вставка пароля")
-    public static void inputPasswordString(String password) {
+    public void inputPasswordString(String password) {
         Allure.step("Вставка пароля");
         textInputPassword.perform(replaceText(password), closeSoftKeyboard());
     }
 
-    public static ViewInteraction loginButton = onView(withId(R.id.enter_button));
+    ViewInteraction loginButton = onView(withId(R.id.enter_button));
+    public ViewInteraction getLoginButton(){
+        return loginButton;
+    }
 
     @Step("Нажатие кнопки логина")
-    public static void pressLoginButton() {
+    public void pressLoginButton() {
         Allure.step("Нажатие кнопки логина");
         loginButton.perform(click());
     }

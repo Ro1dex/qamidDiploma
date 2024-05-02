@@ -22,28 +22,28 @@ import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.testutils.Matchers;
 
 public class CreateNews extends Matchers {
-    static ViewInteraction newsCategory = onView(
+    ViewInteraction newsCategory = onView(
             allOf(withId(R.id.news_item_category_text_auto_complete_text_view)));
 
     @Step("Нажатие на 'категория'")
-    public static void pressNewsCategory() {
+    public void pressNewsCategory() {
         Allure.step("Нажатие на 'категория'");
         newsCategory.perform(click());
     }
 
-    static DataInteraction category(int pos) {
+    DataInteraction category(int pos) {
         return onData(anything())
                 .inRoot(isPlatformPopup())
                 .atPosition(pos);
     }
 
     @Step("Выбор из списка категорий")
-    public static void pressCategory(int pos) {
+    public void pressCategory(int pos) {
         Allure.step("Выбор из списка категорий");
         category(pos).perform(click());
     }
 
-    static ViewInteraction createDate = onView(
+    ViewInteraction createDate = onView(
             allOf(withId(R.id.news_item_publish_date_text_input_edit_text),
                     childAtPosition(
                             childAtPosition(
@@ -52,37 +52,37 @@ public class CreateNews extends Matchers {
                             1)));
 
     @Step("Нажатие на 'Дата опубликации'")
-    public static void pressDate() {
+    public void pressDate() {
         Allure.step("Нажатие на 'Дата опубликации'");
         createDate.perform(click());
     }
 
-    static ViewInteraction okButton = onView(
+    ViewInteraction okButton = onView(
             allOf(withId(android.R.id.button1),
                     childAtPosition(
                             childAtPosition(
                                     withClassName(is("android.widget.ScrollView")),
                                     0),
                             3)));
-    static ViewInteraction cancelButton = onView((allOf(withId(android.R.id.button2), childAtPosition(
+    ViewInteraction cancelButton = onView((allOf(withId(android.R.id.button2), childAtPosition(
             childAtPosition(
                     withId(androidx.constraintlayout.widget.R.id.buttonPanel),
                     0),
             2))));
 
     @Step("Нажатие Ок")
-    public static void pressOk() {
+    public void pressOk() {
         Allure.step("Нажатие Ок");
         okButton.perform(click());
     }
 
     @Step("Нажатие отмена")
-    public static void pressCancel() {
+    public void pressCancel() {
         Allure.step("Нажатие отмена");
         cancelButton.perform(click());
     }
 
-    static ViewInteraction createTime = onView(
+    ViewInteraction createTime = onView(
             allOf(withId(R.id.news_item_publish_time_text_input_edit_text),
                     childAtPosition(
                             childAtPosition(
@@ -91,32 +91,32 @@ public class CreateNews extends Matchers {
                             1)));
 
     @Step("Нажатие на время опубликации")
-    public static void pressTime() {
+    public void pressTime() {
         Allure.step("Нажатие на время опубликации");
         createTime.perform(click());
     }
 
-    static ViewInteraction textDescription = onView(allOf(withId(R.id.news_item_description_text_input_edit_text)));
+    ViewInteraction textDescription = onView(allOf(withId(R.id.news_item_description_text_input_edit_text)));
 
     @Step("Вставка описания")
-    public static void inputTextDescription(String des) {
+    public void inputTextDescription(String des) {
         Allure.step("Вставка описания");
         textDescription.perform(replaceText(des), closeSoftKeyboard());
     }
 
-    static ViewInteraction dismiss = onView(allOf(withId(R.id.cancel_button)));
+    ViewInteraction dismiss = onView(allOf(withId(R.id.cancel_button)));
 
     @Step("Нажатие на отмену изменений")
-    public static void pressDismiss() {
+    public void pressDismiss() {
         Allure.step("Нажатие на отмену изменений");
         dismiss.perform(click());
     }
 
-    static ViewInteraction saveNewsButton = onView(
+    ViewInteraction saveNewsButton = onView(
             allOf(withId(R.id.save_button)));
 
     @Step("Нажатие на сохранить")
-    public static void pressSave() {
+    public void pressSave() {
         Allure.step("Нажатие на сохранить");
         saveNewsButton.perform(scrollTo(), click());
     }

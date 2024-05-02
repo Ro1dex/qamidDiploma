@@ -1,7 +1,6 @@
 package ru.iteco.fmhandroid.ui;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static ru.iteco.fmhandroid.ui.pageobjects.ActionBar.imageTradeMark;
 import androidx.test.filters.LargeTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,23 +14,27 @@ import ru.iteco.fmhandroid.ui.testutils.TestHelper;
 @LargeTest
 @RunWith(AllureAndroidJUnit4.class)
 public class ValidLoginTest extends Matchers {
+    TestHelper testHelper = new TestHelper();
+    LoginPage loginPage = new LoginPage();
+    ActionBar actionBar = new ActionBar();
+
     String validLogin = "login2";
     String validPassword = "password2";
 
     @Test
     public void appValidLoginTest() {
-        TestHelper.logoutIfNeeded();
-        LoginPage.inputLoginString(validLogin);
-        LoginPage.inputPasswordString(validPassword);
-        LoginPage.pressLoginButton();
-        imageTradeMark.check(matches(isDisplayed()));
+        testHelper.logoutIfNeeded();
+        loginPage.inputLoginString(validLogin);
+        loginPage.inputPasswordString(validPassword);
+        loginPage.pressLoginButton();
+        actionBar.getImageTradeMark().check(matches(isDisplayed()));
     }
     @Test
     public void appTestLogout() {
-        TestHelper.loginIfNeeded();
-        ActionBar.pressProfileButton();
-        ActionBar.pressLogoutButton();
-        LoginPage.loginButton.check(matches(isDisplayed()));
+        testHelper.loginIfNeeded();
+        actionBar.pressProfileButton();
+        actionBar.pressLogoutButton();
+        loginPage.getLoginButton().check(matches(isDisplayed()));
 
     }
 

@@ -4,12 +4,13 @@ import org.junit.After;
 import org.junit.Before;
 
 public class TestBaseLogin extends Matchers {
+    TestHelper testHelper =new TestHelper();
     @Before
     public void login(){
-        TestHelper.loginIfNeeded();
+        testHelper.loginIfNeeded();
     }
     @After
     public void logout(){
-        TestHelper.logoutIfNeeded();
+        testHelper.logoutIfNeeded();
     }
 }

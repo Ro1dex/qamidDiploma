@@ -22,86 +22,94 @@ import ru.iteco.fmhandroid.ui.testutils.TestBaseLogin;
 @LargeTest
 @RunWith(AllureAndroidJUnit4.class)
 public class NewsPageTest extends TestBaseLogin {
+    ActionBar actionBar = new ActionBar();
+    FilterNews filterNews = new FilterNews();
+    NewsPage newsPage = new NewsPage();
+    ControlPanel controlPanel = new ControlPanel();
+    MainPage mainPage = new MainPage();
+    CreateNews createNews = new CreateNews();
+    EditNews editNews = new EditNews();
+
 
 
     @Test
     public void newsPageTest(){
 
-        ActionBar.pressMenuButton();
-        ActionBar.pressMenuNews();
-        NewsPage.pressSortNews();
-        NewsPage.pressSortNews();
-        NewsPage.pressFilterNews();
-        FilterNews.pressDismiss();
-        NewsPage.pressEdit();
-        ControlPanel.addNewsButton.check(matches(isDisplayed()));
+        actionBar.pressMenuButton();
+        actionBar.pressMenuNews();
+        newsPage.pressSortNews();
+        newsPage.pressSortNews();
+        newsPage.pressFilterNews();
+        filterNews.pressDismiss();
+        newsPage.pressEdit();
+        controlPanel.getAddNewsButton().check(matches(isDisplayed()));
         Espresso.pressBack();
-        NewsPage.newsContainer.check(matches(isDisplayed()));
-        NewsPage.pressExpandNews(0);
-        NewsPage.pressDescription(0);
-        NewsPage.pressDescription(0);
-        NewsPage.pressExpandNews(0);
+        newsPage.getNewsContainer().check(matches(isDisplayed()));
+        newsPage.pressExpandNews(0);
+        newsPage.pressDescription(0);
+        newsPage.pressDescription(0);
+        newsPage.pressExpandNews(0);
     }
     @Test
     public void createAndDeleteNewsTest(){
-        String description = "Эта новость сделана автоматически";
+        String description = "Эта новость сделана автоматически, вскоре она будет удалена";
         int position = 0;
-        MainPage.pressAllNews();
-        NewsPage.pressEdit();
-        ControlPanel.pressAddNews();
-        CreateNews.pressNewsCategory();
-        CreateNews.pressCategory(position);
-        CreateNews.pressDate();
-        CreateNews.pressOk();
-        CreateNews.pressTime();
-        CreateNews.pressOk();
-        CreateNews.inputTextDescription(description);
-        CreateNews.pressSave();
+        mainPage.pressAllNews();
+        newsPage.pressEdit();
+        controlPanel.pressAddNews();
+        createNews.pressNewsCategory();
+        createNews.pressCategory(position);
+        createNews.pressDate();
+        createNews.pressOk();
+        createNews.pressTime();
+        createNews.pressOk();
+        createNews.inputTextDescription(description);
+        createNews.pressSave();
 
-        ActionBar.pressMenuButton();
-        ActionBar.pressMenuNews();
-        NewsPage.pressNewsItem(position);
-        NewsPage.newsItemDescription(position).check(matches(withText(description)));
-        NewsPage.pressEdit();
-        NewsPage.pressNewsItem(position);
-        NewsPage.newsItemDescription(position).check(matches(withText(description)));
-        ControlPanel.pressDeleteNews(position);
-        CreateNews.pressOk();
-        ActionBar.pressMenuButton();
-        ActionBar.pressMenuMain();
-        NewsPage.newsItemDescription(position).check(matches(not(withText(description))));
+        actionBar.pressMenuButton();
+        actionBar.pressMenuNews();
+        newsPage.pressNewsItem(position);
+        newsPage.getNewsItemDescription(position).check(matches(withText(description)));
+        newsPage.pressEdit();
+        newsPage.pressNewsItem(position);
+        newsPage.getNewsItemDescription(position).check(matches(withText(description)));
+        controlPanel.pressDeleteNews(position);
+        createNews.pressOk();
+        actionBar.pressMenuButton();
+        actionBar.pressMenuMain();
+        newsPage.getNewsItemDescription(position).check(matches(not(withText(description))));
 
     }
     @Test
     public void checkCategoryFilterNewsTest(){
-        int categoryPos = 0;
-        MainPage.pressAllNews();
-        NewsPage.pressFilterNews();
+        int categoryPos = 3;
+        mainPage.pressAllNews();
+        newsPage.pressFilterNews();
 
-        FilterNews.pressNewsCategory();
-        FilterNews.pressCategory(categoryPos);
-        FilterNews.pressDateStart();
-        CreateNews.pressOk();
-        FilterNews.pressDateEnd();
-        CreateNews.pressOk();
-        FilterNews.pressFilter();
+        filterNews.pressNewsCategory();
+        filterNews.pressCategory(categoryPos);
+        filterNews.pressDateStart();
+        createNews.pressOk();
+        filterNews.pressDateEnd();
+        createNews.pressOk();
+        filterNews.pressFilter();
         checkChoseCategory(categoryPos);
     }
     @Test
     public void editNewsTest(){
         int itemPos = 0;
-        MainPage.pressAllNews();
-        NewsPage.pressEdit();
-        ControlPanel.pressEditNews(itemPos);
+        mainPage.pressAllNews();
+        newsPage.pressEdit();
+        controlPanel.pressEditNews(itemPos);
         String editedDescription = "Автоматически изменённое описание 1";
-        EditNews.pressDismiss();
-        EditNews.pressOk();
-        ControlPanel.pressEditNews(0);
-        EditNews.pressDismiss();
-        EditNews.pressCancel();
-        EditNews.inputTextDescription(editedDescription);
-        EditNews.pressSave();
-        NewsPage.newsItemDescription(itemPos).check(matches(withText(editedDescription)));
+        editNews.pressDismiss();
+        editNews.pressOk();
+        controlPanel.pressEditNews(0);
+        editNews.pressDismiss();
+        editNews.pressCancel();
+        editNews.inputTextDescription(editedDescription);
+        editNews.pressSave();
+        newsPage.getNewsItemDescription(itemPos).check(matches(withText(editedDescription)));
     }
 
 }

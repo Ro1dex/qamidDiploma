@@ -14,20 +14,20 @@ import ru.iteco.fmhandroid.ui.testutils.TestBaseLogin;
 @LargeTest
 @RunWith(AllureAndroidJUnit4.class)
 public class AboutPageTest extends TestBaseLogin {
-
+    private final AboutPage aboutPage = new AboutPage();
+    private final ActionBar actionBar = new ActionBar();
     @Test
     public void aboutPageVisibilityTest(){
-        ActionBar.pressMenuButton();
-        ActionBar.pressMenuAbout();
-        AboutPage.aboutCompany.check(matches(isDisplayed()));
-        AboutPage.aboutVersionText.check(matches(isDisplayed()));
-        AboutPage.aboutVersionValue.check(matches(isDisplayed()));
-        AboutPage.privacyPolicyText.check(matches(isDisplayed()));
-        AboutPage.privacyPolicyLink.check(matches(isDisplayed()));
-        AboutPage.termsOfUseText.check(matches(isDisplayed()));
-        AboutPage.termsOfUseLink.check(matches(isDisplayed()));
-        AboutPage.clickBackButtonAbout();
-
+        actionBar.pressMenuButton();
+        actionBar.pressMenuAbout();
+        aboutPage.getAboutCompany().check(matches(isDisplayed()));
+        aboutPage.getAboutVersionText().check(matches(isDisplayed()));
+        aboutPage.getAboutVersionValue().check(matches(isDisplayed()));
+        aboutPage.getPrivacyPolicyText().check(matches(isDisplayed()));
+        aboutPage.getPrivacyPolicyLink().check(matches(isDisplayed()));
+        aboutPage.getTermsOfUseText().check(matches(isDisplayed()));
+        aboutPage.getTermsOfUseLink().check(matches(isDisplayed()));
+        aboutPage.clickBackButtonAbout();
     }
 
 }

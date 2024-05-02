@@ -17,32 +17,37 @@ import ru.iteco.fmhandroid.ui.testutils.TestBaseLogin;
 @LargeTest
 @RunWith(AllureAndroidJUnit4.class)
 public class ActionBarTest extends TestBaseLogin {
+    private final ActionBar actionBar = new ActionBar();
+    private final AboutPage aboutPage = new AboutPage();
+    private final NewsPage newsPage = new NewsPage();
+    private final MainPage mainPage = new MainPage();
+    private final OurMissionPage ourMissionPage = new  OurMissionPage();
 
     @Test
     public void actionBarMenuTest(){
-        ActionBar.pressMenuButton();
-        ActionBar.pressMenuAbout();
-        AboutPage.aboutVersionText.check(matches(isDisplayed()));
-        AboutPage.clickBackButtonAbout();
-        ActionBar.pressMenuButton();
-        ActionBar.pressMenuNews();
-        NewsPage.newsContainer.check(matches(isDisplayed()));
-        ActionBar.pressMenuButton();
-        ActionBar.pressMenuMain();
-        MainPage.newsContainerMain.check(matches(isDisplayed()));
-        ActionBar.pressMenuButton();
-        ActionBar.pressMenuNews();
-        NewsPage.newsContainer.check(matches(isDisplayed()));
-        ActionBar.pressMenuButton();
-        ActionBar.pressMenuAbout();
-        AboutPage.aboutVersionText.check(matches(isDisplayed()));
+        actionBar.pressMenuButton();
+        actionBar.pressMenuAbout();
+        aboutPage.getAboutVersionText().check(matches(isDisplayed()));
+        aboutPage.clickBackButtonAbout();
+        actionBar.pressMenuButton();
+        actionBar.pressMenuNews();
+        newsPage.getNewsContainer().check(matches(isDisplayed()));
+        actionBar.pressMenuButton();
+        actionBar.pressMenuMain();
+        mainPage.getNewsContainerMain().check(matches(isDisplayed()));
+        actionBar.pressMenuButton();
+        actionBar.pressMenuNews();
+        mainPage.getNewsContainer().check(matches(isDisplayed()));
+        actionBar.pressMenuButton();
+        actionBar.pressMenuAbout();
+        aboutPage.getAboutVersionText().check(matches(isDisplayed()));
     }
     @Test
     public void actionBarOurMissionButtonTest(){
-        ActionBar.pressOurMissionButton();
-        OurMissionPage.title.check(matches(isDisplayed()));
-        OurMissionPage.pressItem(0);
-        OurMissionPage.pressItem(0);
+        actionBar.pressOurMissionButton();
+        ourMissionPage.getTitle().check(matches(isDisplayed()));
+        ourMissionPage.pressItem(0);
+        ourMissionPage.pressItem(0);
     }
 
 

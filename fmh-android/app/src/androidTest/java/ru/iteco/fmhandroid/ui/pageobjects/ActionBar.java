@@ -19,69 +19,72 @@ import ru.iteco.fmhandroid.ui.testutils.Matchers;
 
 public class ActionBar extends Matchers {
 
-    public static ViewInteraction imageTradeMark = onView(withId(R.id.trademark_image_view));
-    static ViewInteraction profileButton = onView(allOf(withId(R.id.authorization_image_button)));
+    ViewInteraction imageTradeMark = onView(withId(R.id.trademark_image_view));
+    public ViewInteraction getImageTradeMark(){
+        return imageTradeMark;
+    }
+    ViewInteraction profileButton = onView(allOf(withId(R.id.authorization_image_button)));
 
     @Step("Нажатие кнопки профиля")
-    public static void pressProfileButton() {
+    public void pressProfileButton() {
         Allure.step("Нажатие кнопки профиля");
         profileButton.perform(click());
     }
 
-    static DataInteraction logoutButton = onData(anything())
+    DataInteraction logoutButton = onData(anything())
             .inRoot(isPlatformPopup())
             .atPosition(0);
 
     @Step("Нажатие выйти из профиля")
-    public static void pressLogoutButton() {
+    public void pressLogoutButton() {
         Allure.step("Нажатие выйти из профиля");
         logoutButton.perform(click());
     }
 
-    static ViewInteraction menuButton = onView(
+    ViewInteraction menuButton = onView(
             allOf(withId(R.id.main_menu_image_button)));
 
     @Step("Нажатие кнопки Меню")
-    public static void pressMenuButton() {
+    public void pressMenuButton() {
         Allure.step("Нажатие кнопки Меню");
         menuButton.perform(click());
     }
 
-    static DataInteraction menuAbout = onData(anything())
+    DataInteraction menuAbout = onData(anything())
             .inRoot(isPlatformPopup())
             .atPosition(2);
 
     @Step("Выбор из списка 'о приложении'")
-    public static void pressMenuAbout() {
+    public void pressMenuAbout() {
         Allure.step("Выбор из списка 'о приложении'");
         menuAbout.perform(click());
     }
 
-    static DataInteraction menuNews = onData(anything())
+    DataInteraction menuNews = onData(anything())
             .inRoot(isPlatformPopup())
             .atPosition(1);
 
     @Step("Выбор из списка 'Новости'")
-    public static void pressMenuNews() {
+    public void pressMenuNews() {
         Allure.step("Выбор из списка 'Новости'");
         menuNews.perform(click());
     }
 
-    static DataInteraction menuMain = onData(anything())
+    DataInteraction menuMain = onData(anything())
             .inRoot(isPlatformPopup())
             .atPosition(0);
 
     @Step("Выбор из списка 'Главная'")
-    public static void pressMenuMain() {
+    public void pressMenuMain() {
         Allure.step("Выбор из списка 'Главная'");
         menuMain.perform(click());
     }
 
-    static ViewInteraction ourMissionButton = onView(
+    ViewInteraction ourMissionButton = onView(
             allOf(withId(R.id.our_mission_image_button)));
 
     @Step("Нажатие на кнопку 'Наша Миссия'")
-    public static void pressOurMissionButton() {
+    public void pressOurMissionButton() {
         Allure.step("Нажатие на кнопку 'Наша Миссия'");
         ourMissionButton.perform(click());
     }

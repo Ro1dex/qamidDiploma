@@ -10,42 +10,64 @@ import androidx.test.espresso.ViewInteraction;
 
 import org.hamcrest.core.IsInstanceOf;
 
+
 import io.qameta.allure.kotlin.Allure;
 import io.qameta.allure.kotlin.Step;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.testutils.Matchers;
 
 public class AboutPage extends Matchers {
-
-    public static ViewInteraction aboutVersionText = onView(
+    ViewInteraction aboutVersionText = onView(
             allOf(withId(R.id.about_version_title_text_view)));
-    static ViewInteraction backButtonAbout = onView(
+    public ViewInteraction getAboutVersionText(){
+        return aboutVersionText;
+    }
+
+    ViewInteraction backButtonAbout = onView(
             allOf(withId(R.id.about_back_image_button)));
 
     @Step("Нажатие кнопки назад")
-    public static void clickBackButtonAbout() {
+    public void clickBackButtonAbout() {
         Allure.step("Нажатие кнопки назад");
         backButtonAbout.perform(click());
     }
 
-    public static ViewInteraction aboutCompany = onView(
+    ViewInteraction aboutCompany = onView(
             allOf(withId(R.id.about_company_info_label_text_view),
                     withParent(withParent(IsInstanceOf.instanceOf(android.widget.LinearLayout.class)))));
-    public static ViewInteraction aboutVersionValue = onView(
+    public ViewInteraction getAboutCompany(){
+        return aboutCompany;
+    }
+    ViewInteraction aboutVersionValue = onView(
             allOf(withId(R.id.about_version_value_text_view),
                     withParent(withParent(IsInstanceOf.instanceOf(android.widget.LinearLayout.class)))));
-    public static ViewInteraction privacyPolicyText = onView(
+    public ViewInteraction getAboutVersionValue(){
+        return aboutVersionValue;
+    }
+    ViewInteraction privacyPolicyText = onView(
             allOf(withId(R.id.about_privacy_policy_label_text_view),
                     withParent(withParent(IsInstanceOf.instanceOf(android.widget.LinearLayout.class)))));
+    public ViewInteraction getPrivacyPolicyText(){
+        return privacyPolicyText;
+    }
 
-    public static ViewInteraction privacyPolicyLink = onView(
+    ViewInteraction privacyPolicyLink = onView(
             allOf(withId(R.id.about_privacy_policy_value_text_view),
                     withParent(withParent(IsInstanceOf.instanceOf(android.widget.LinearLayout.class)))));
-    public static ViewInteraction termsOfUseText = onView(
+    public ViewInteraction getPrivacyPolicyLink(){
+        return privacyPolicyLink;
+    }
+    ViewInteraction termsOfUseText = onView(
             allOf(withId(R.id.about_terms_of_use_label_text_view),
                     withParent(withParent(IsInstanceOf.instanceOf(android.widget.LinearLayout.class)))));
-    public static ViewInteraction termsOfUseLink = onView(
+    public ViewInteraction getTermsOfUseText(){
+        return termsOfUseText;
+    }
+    ViewInteraction termsOfUseLink = onView(
             allOf(withId(R.id.about_terms_of_use_value_text_view),
                     withParent(withParent(IsInstanceOf.instanceOf(android.widget.LinearLayout.class)))));
+    public ViewInteraction getTermsOfUseLink(){
+        return termsOfUseLink;
+    }
 
 }

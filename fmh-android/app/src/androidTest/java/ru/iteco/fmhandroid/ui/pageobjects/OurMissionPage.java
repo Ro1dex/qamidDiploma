@@ -14,13 +14,16 @@ import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.testutils.Matchers;
 
 public class OurMissionPage extends Matchers {
-    static public ViewInteraction title = onView(
+    ViewInteraction title = onView(
             allOf(withId(R.id.our_mission_title_text_view)));
-    static ViewInteraction item = onView(
+    ViewInteraction item = onView(
             allOf(withId(R.id.our_mission_item_list_recycler_view)));
+    public ViewInteraction getTitle(){
+        return title;
+    }
 
     @Step("Нажатие на классную цитату")
-    public static void pressItem(int position) {
+    public void pressItem(int position) {
         Allure.step("Нажатие на классную цитату");
         item.perform(actionOnItemAtPosition(position, click()));
     }

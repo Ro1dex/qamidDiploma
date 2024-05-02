@@ -14,25 +14,26 @@ import ru.iteco.fmhandroid.ui.testutils.TestBaseLogout;
 @LargeTest
 @RunWith(AllureAndroidJUnit4.class)
 public class InvalidLoginTest extends TestBaseLogout {
+    private final LoginPage loginPage = new LoginPage();
 
     @Test
 
     public void invalidLoginTest(){
-        LoginPage.inputLoginString("login");
-        LoginPage.inputPasswordString("password2");
-        LoginPage.pressLoginButton();
+        loginPage.inputLoginString("login");
+        loginPage.inputPasswordString("password2");
+        loginPage.pressLoginButton();
         checkToastMessage("Неверный логин или пароль");
     }
     @Test
     public void invalidPasswordTest(){
-        LoginPage.inputLoginString("login2");
-        LoginPage.inputPasswordString("password");
-        LoginPage.pressLoginButton();
+        loginPage.inputLoginString("login2");
+        loginPage.inputPasswordString("password");
+        loginPage.pressLoginButton();
         checkToastMessage("Неверный логин или пароль");
     }
     @Test
     public void emptyLoginAndPasswordTest(){
-        LoginPage.pressLoginButton();
+        loginPage.pressLoginButton();
         checkToastMessage("Логин и пароль не могут быть пустыми");
     }
 
