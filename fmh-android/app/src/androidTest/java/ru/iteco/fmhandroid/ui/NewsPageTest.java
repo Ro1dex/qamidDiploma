@@ -81,8 +81,25 @@ public class NewsPageTest extends TestBaseLogin {
 
     }
     @Test
+    public void createNews(){
+        String description = "Эта новость сделана автоматически";
+        int position = 0;
+        mainPage.pressAllNews();
+        newsPage.pressEdit();
+        controlPanel.pressAddNews();
+        createNews.pressNewsCategory();
+        createNews.pressCategory(position);
+        createNews.pressDate();
+        createNews.pressOk();
+        createNews.pressTime();
+        createNews.pressOk();
+        createNews.inputTextDescription(description);
+        createNews.pressSave();
+        controlPanel.getNewsItemDescription(position).check(matches(withText(description)));
+    }
+    @Test
     public void checkCategoryFilterNewsTest(){
-        int categoryPos = 3;
+        int categoryPos = 3; //категория меняется здесь 0-7
         mainPage.pressAllNews();
         newsPage.pressFilterNews();
 
@@ -101,7 +118,7 @@ public class NewsPageTest extends TestBaseLogin {
         mainPage.pressAllNews();
         newsPage.pressEdit();
         controlPanel.pressEditNews(itemPos);
-        String editedDescription = "Автоматически изменённое описание 1";
+        String editedDescription = "Автоматически изменённое описание";
         editNews.pressDismiss();
         editNews.pressOk();
         controlPanel.pressEditNews(0);
