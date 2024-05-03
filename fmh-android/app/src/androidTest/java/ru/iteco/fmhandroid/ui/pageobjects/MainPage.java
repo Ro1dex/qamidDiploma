@@ -18,7 +18,7 @@ public class MainPage extends NewsPage {
     ViewInteraction newsContainerMain = onView(
             allOf((withId(R.id.container_list_news_include_on_fragment_main))));
     public ViewInteraction getNewsContainerMain(){
-        return newsContainer;
+        return newsContainerMain;
     }
     ViewInteraction newsContainerExpand = onView(
             allOf(withId(R.id.expand_material_button)));
